@@ -1,0 +1,9 @@
+190702
+
+yarn add bootstrap-vue bootstrap
+
+main.js (import vue vue-routerの後)
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)

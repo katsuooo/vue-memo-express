@@ -1,8 +1,32 @@
 import Vue from 'vue'
-import App from './App.vue'
+
+
 
 Vue.config.productionTip = false
 
+import VueRouter from 'vue-router'  //add
+Vue.use(VueRouter)
+import routes from './routes'
+const router = new VueRouter({routes})
+
+
+/*
+ bootstrap-vue
+*/
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+
+/*
+ click-confirm
+*/
+import ClickConfirm from 'click-confirm/src/components/ClickConfirm.vue'
+Vue.component('clickConfirm', ClickConfirm);
+
+import App from './App.vue'
+
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')

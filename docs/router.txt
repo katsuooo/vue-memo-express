@@ -1,0 +1,79 @@
+190701
+vue-router
+
+yarn add vue-router --save
+
+#
+# edit src/main.js   add src/routes.js
+#
+import Vue from 'vue'
+import App from './App.vue'
+import VueRouter from 'vue-router'  //add
+
+Vue.config.productionTip = false
+Vue.use(VueRouter)  //add
+
+import routes from './routes'   // add
+const router = new VueRouter({routes});
+
+new Vue({
+  router,     // add
+  render: h => h(App),
+}).$mount('#app')
+
+#
+# src/routes.js (proto)
+#
+import Home from './components/Home.vue'
+import Memobg from './components/Memobg.vue'
+import Memooutline from './components/Memooutline.vue'
+import Panel from './components/Panel.vue'
+import Error from './components/404.vue'
+import Memo from './components/Memo.vue'
+import Filtertest from './components/filterTest.vue'
+const routes = [
+    { path: '/', component: Home, name: 'home' },
+    { path: '/memo-bg', component: Memobg, name: 'memo-bg' },
+    { path: '/memo-outline', component: Memooutline, name: 'memo-outline' },
+    { path: '/panel', component: Panel, name: 'panel' },
+    { path: '/404', component: Error, name: '404' },
+    { path: '/memo/:color', component: Memo, name: 'memo' },
+    { path: '/Filtertest', component: Filtertest, name: 'filter-test' },
+];
+export default routes;
+
+
+#
+# src/App.vue
+#
+<template>
+  <div id="app">
+    <nav>
+      <router-link class='btn btn-sm btn-outline-success' :to="{name:'memo-bg'}">Memobg</router-link>
+      <router-link class='btn btn-sm btn-outline-warning' :to="{name:'memo-outline'}">Memooutline</router-link>
+      <router-link class='btn btn-sm btn-outline-info' :to="{name: 'panel'}">Panel</router-link>
+      <router-link class='btn btn-sm btn-outline-danger' :to="{name: 'memo', params: {color: 'mono'}}">Memo-mono</router-link>
+      <router-link class='btn btn-sm btn-outline-secondary' :to="{name: 'memo', params: {color: 'background'}}">Memo-bg</router-link>
+      <router-link class='btn btn-sm btn-outline-primary' :to="{name: 'memo', params: {color: 'outline'}}">Memo-outline</router-link>
+      <router-link class='btn btn-sm btn-outline-default' :to="{name: 'filter-test'}">Filter-test</router-link>
+     </nav>
+    <router-view />
+  </div>
+</template>
+
+<script>
+export default {
+  
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>

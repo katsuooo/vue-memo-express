@@ -1,0 +1,10 @@
+190702
+
+yarn add click-confirm --save
+srcフォルダがはいらないので、
+node_modules/click_confirm/
+にzip downloadしたプロジェクトからsrcフォルダをコピー
+
+main.js (import App ... の前, import vue, vue-routerの後)
+import ClickConfirm from 'click-confirm/src/components/ClickConfirm.vue'
+Vue.component('clickConfirm', ClickConfirm);

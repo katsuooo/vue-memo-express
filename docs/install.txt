@@ -1,0 +1,20 @@
+190701
+# vue and vue-express
+vue create vue-memo-express
+cd vue-memo-express
+vue add express
+
+# modules
+bootstrap-vue
+bootstrap
+vue-router
+socket.io
+moment
+mongodb (for server)
+js-yaml (for server)
+yarn add  xxxx xxxx xxxx ....  --save
+
+*click-confirm
+yarn add click-confirm --save, and
+copy src folder to ./node_modules/click-confirm/ from zip download
+

@@ -1,0 +1,18 @@
+190703
+
+public/index.html
+<link href="https://fonts.googleapis.com/css?family=Kosugi|Kosugi+Maru|M+PLUS+1p|M+PLUS+Rounded+1c|Noto+Sans+JP|Noto+Sans+SC|Noto+Sans+TC|Sawarabi+Gothic|Sawarabi+Mincho" rel="stylesheet">
+
+App.vue/style
+.f1{font-family: 'Noto Sans JP', sans-serif;}
+.f2{font-family: 'Noto Sans TC', sans-serif;}
+.f3{font-family: 'M PLUS 1p', sans-serif;}
+.f4{font-family: 'Noto Sans SC', sans-serif;}
+.f5{font-family: 'Sawarabi Mincho', sans-serif;}
+.f6{font-family: 'Sawarabi Gothic', sans-serif;}
+.f7{font-family: 'Kosugi Maru', sans-serif;}
+.f8{font-family: 'M PLUS Rounded 1c', sans-serif;}
+.f9{font-family: 'Kosugi', sans-serif;}
+
+memo.vue/template
+  <div id="app" class='f9'>

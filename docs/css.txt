@@ -1,3 +1,6 @@
+190703
+bootstrap importの順番で、優先度がかわる。
+
 import Vue from 'vue'
 /*
  bootstrap-vue
@@ -26,8 +29,11 @@ Vue.component('clickConfirm', ClickConfirm);
 
 import App from './App.vue'
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app')
+
+Vue
+bootstrap
+vue-router
+App
+の順なら、App以下でbootstrapの書き換えができる。
+順により、bootstrapが後で読み込まれると、user側でimporant等する必要がある。
 

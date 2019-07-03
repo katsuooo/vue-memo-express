@@ -1,0 +1,16 @@
+190703-2
+animationがtextareaにきいていない。
+slideはきいてるが、colorだけ変更された場合、色だけ再レンダリングされる。
+その際、textareaはすぐかかれる。
+
+190703
+filter-testでfilter実験 and版
+input, add new を　1lineに
+textareaに枠線ついてる。
+test deployするのになにか？
+filter-test >>> memoに移植。
+filter result dump
+filter result delete
+textarea spread and reduce
+textarea outline >>> delete
+read_size >>> parameterのほうがいい？

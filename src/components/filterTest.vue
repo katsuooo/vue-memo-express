@@ -7,7 +7,7 @@
         </div>
         <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new</button>
         <transition-group name='list-complete' tag='p'>
-            <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item._id v-bind:cardIndex='index' v-bind:memo='item' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+            <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item._id v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
         </transition-group>
         <button class='btn btn-sm btn-block btn-outline-danger' @click='nextData'>next10</button>
     </div>
@@ -57,7 +57,8 @@ export default {
         count: 0,
         test_memos:Array,
         filter: '',
-        read_size: 100
+        read_size: 4,
+        cardStyle: String
     }),
     methods: {
         socketTest(){
@@ -155,8 +156,10 @@ export default {
   },
   beforeMount(){
         //this.socketTest();
-        this.memos = [{datetime:'', text:'', _id:''}];
+        //this.memos = [{datetime:'', text:'', _id:''}];
+        this.memos = []
         this.socket.emit('READLIMIT', this.read_size);
+        this.cardStyle = 'background'
   }
 }
 </script>

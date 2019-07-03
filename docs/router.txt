@@ -1,3 +1,26 @@
+190703
+$route.params.colorの変化でre-renderingされない。
+:classの切り替えスイッチにつかっているが、re-renderringされないので、意味がない。
+
+cardに渡すcardStyleをmemo.vueで切り替える。
+memo.vue
+  watch:{
+    '$route.params.color': function(){
+      this.cardStyle = this.$route.params.color
+    }
+  }
+
+
+
+
+190703
+$route.params.color
+data()でつかえない。
+template - $route.params.color
+script - this.$route.params.color
+grand child component recognize $route
+
+
 190701
 vue-router
 

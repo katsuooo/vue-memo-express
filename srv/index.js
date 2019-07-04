@@ -23,7 +23,9 @@ export default (app, http) => {
   //   client.emit("message", "Welcome");
   // });
   socketManager(http)
+  /*
   app.get('/', function(req, res){
     res.send('<h1>mongodb interface by socketio</h1>')
   });
+  */
 }

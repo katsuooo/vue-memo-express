@@ -1,0 +1,97 @@
+190704-2
+newから新規入力時にmemo._idが書き換えられる。
+このときにtransitionが発火すると、focusがはずれる。
+このときのtransitionをオフする。
+name='list-complete' >>> :name='transition_name'
+と関数に置き換える。
+
+memo.vue
+template
+    <transition-group :name='transition_name' tag='div'>
+scripts
+/**
+ * transition control
+ */
+function transition_off(){
+  transition_name = 'transition-off'  // set dummy name
+}
+function transition_on(){
+  transition_name = 'list-complete'
+}
+exports/method
+	this.socket.on('NEW_ID', (mes) => {
+			if(this.memos[0]._id === 'new'){
+        transition_off()
+				this.memos[0]._id = mes;
+        transition_on()
+      }
+		})
+exports/beforMount()
+    this.transition_name = 'list-complete'
+
+
+style
+/**
+ * transition
+ */
+.list-complete-item {
+  transition: all 1s;
+  display: block;
+}
+.list-complete-enter, .list-complete-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+/**
+ * transiton off
+ */
+.transition-off, .transition-off-leave-to{
+  opacity: 0;
+}
+
+
+memo._id書き換えの前後でtransrationのnameを書き換え、new >>> データinでidを付与時のtransrationを止める
+
+>>> errorでとまってただけ。_idの書き換えじゃないのかな？
+_idの書き換えをとめるとtransrationとまる。
+textの書き換えではtransration発生しない。
+
+書き戻しが早すぎて、トランジション状態時にはアクティブにもどってる。
+しかし、off >>> onの書き換えをやめても、フォーカスははずれる。
+
+トランジションの問題ではなく、_idを書き換えた時にfocusがはずれている。
+blurでイベント発行して再度フォーカスとれるか。
+
+key = item._idとしているので、この辺の影響かもしれない。
+keyが書き換わると、re-rendaringされる。
+item.textにすると、内容が同じメモでkey重複エラーがでる。
+
+
+
+
+
+
+190704
+memo.vue
+template
+    <transition-group name='list-complete' tag='div'>
+        ...
+    </transition-group>
+style
+/**
+ * animation
+ */
+.list-complete-item {
+  transition: all 1s;
+  display: block;
+}
+.list-complete-enter, .list-complete-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.list-complete-leave-active {
+  position: absolute;
+}

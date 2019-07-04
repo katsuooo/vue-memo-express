@@ -1,13 +1,14 @@
 <!-- memo bg -->
 <template>
     <div id="app" class='f9'>
+
         <div class='form-group'>
             <!--<label for='filter'></label>-->
-            <input type='text' class='form-control form-control-sm' id='filter' placeholder='text filter' :value='this.filter' @input="filterWrite($event.target)"/>
+            <input type='text' class='form-control form-control-sm' id='filter' placeholder='text input...' :value='this.filter' @input="filterWrite($event.target)"/>
         </div>
         <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new</button>
-        <transition-group name='list-complete' tag='p'>
-            <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item._id v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+        <transition-group name='test' tag='div'>
+            <cardtest class='test-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
         </transition-group>
         <button class='btn btn-sm btn-block btn-outline-danger' @click='nextData'>next10</button>
     </div>
@@ -15,8 +16,10 @@
 
 <script>
 import io from 'socket.io-client'
-import card from './card.vue'
+//import card from './card.vue'
+import cardtest from './cardtest.vue'
 import moment from 'moment'
+
 /**
  * memo.text >>> memo.lines[]
  * @param {String} memo 
@@ -49,23 +52,21 @@ function getDatetime(){
 export default {
     name: 'filter-test',
     components: {
-        card
+        cardtest
     },
     data: () => ({
         memos: Array,
         socket : io('localhost:3030'),
-        count: 0,
         test_memos:Array,
         filter: '',
         read_size: 4,
-        cardStyle: String
+        cardStyle: String,
+        viewIndexMaster: 0
     }),
     methods: {
         socketTest(){
             this.name = 'aaa';
             this.message = 'test message';
-            //this.sendMessage()
-            this.count += 1;
             this.memos = [{text:'aaa',datetime:'bbb', _id:'new'}];
             this.socket.emit('READLIMIT', this.read_size);
         },
@@ -92,7 +93,7 @@ export default {
 		if(this.memos[0]._id === 'new'){
 			return;
 			}
-		const newMemo = [{_id: 'new', text:'xxx', datetime:getDatetime()}];
+		const newMemo = [{_id: 'new', text:'', datetime:getDatetime(), viewIndex: this.viewIndexMaster++}];
         this.memos.splice(0,0,newMemo[0]);
     },
     successAlert: function(){
@@ -141,7 +142,7 @@ export default {
                 }else{
                     jointext = '';
                 }
-                buf.push({_id: m._id, datetime: m.datetime, text: jointext});
+                buf.push({_id: m._id, datetime: m.datetime, text: jointext, viewIndex: this.viewIndexMaster++});
             });
             this.memos = buf;
 		}),
@@ -150,8 +151,12 @@ export default {
 		 */
 		this.socket.on('NEW_ID', (mes) => {
 			if(this.memos[0]._id === 'new'){
-				this.memos[0]._id = mes;
-			}
+                //this.transition_name = 'test-off'
+                //this.cardClass = 'test-item-off'
+                this.memos[0]._id = mes;
+                //this.cardClass = 'test-item'
+                //this.transition_name = 'test'
+            }
 		})
   },
   beforeMount(){
@@ -160,47 +165,27 @@ export default {
         this.memos = []
         this.socket.emit('READLIMIT', this.read_size);
         this.cardStyle = 'background'
+        //this.transition_name = 'test'
+        //this.cardClass = 'test-item'
   }
 }
 </script>
 <style>
-h1{display: inline;}
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 15px;
-}
-.btn-circle-confirm {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.42;
-  border-radius: 15px;
-  margin-left: 2px;
-  margin-right:2px;
-}
 /**
  * animation
  */
-.list-complete-item {
+ 
+.test-item {
   transition: all 1s;
-  /*display: inline-block;*/
   display: block;
-  /*margin-right: 10px;*/
 }
-.list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active for below version 2.1.8 */ {
+.test-enter, .test-leave-to{
   opacity: 0;
   transform: translateX(-100%);
 }
-.list-complete-leave-active {
+.test-leave-active {
   position: absolute;
 }
+
+
 </style>

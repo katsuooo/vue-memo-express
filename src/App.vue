@@ -1,13 +1,15 @@
 <template>
   <div id="app"  class='container-fluid'>
     <nav style='display: inline;'>
+      <!--
       <router-link class='btn btn-sm btn-outline-success' :to="{name:'memo-bg'}">Memobg</router-link>
       <router-link class='btn btn-sm btn-outline-warning' :to="{name:'memo-outline'}">Memooutline</router-link>
+            -->
       <router-link class='btn btn-sm btn-outline-info' :to="{name: 'panel'}">Panel</router-link>
       <router-link class='btn btn-sm btn-outline-danger' :to="{name: 'memo', params: {color: 'mono'}}">Memo-mono</router-link>
       <router-link class='btn btn-sm btn-outline-secondary' :to="{name: 'memo', params: {color: 'background'}}">Memo-bg</router-link>
       <router-link class='btn btn-sm btn-outline-primary' :to="{name: 'memo', params: {color: 'outline'}}">Memo-outline</router-link>
-      <router-link class='btn btn-sm btn-outline-default' :to="{name: 'filter-test'}">Filter-test</router-link>
+      <router-link class='btn btn-sm btn-outline-success' :to="{name: 'filter-test'}">Filter-test</router-link>
         <button id='dbBtn' class='btn btn-sm btn-outline-dark btn-circle'>db</button>
     </nav>
 
@@ -34,9 +36,11 @@ export default {
 .f9{font-family: 'Kosugi', sans-serif;}
 h1{display: inline;}
 #app {
+  /*
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  */
   text-align: center;
   color: #2c3e50;
   /*margin-top: 60px;*/

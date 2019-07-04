@@ -5,8 +5,8 @@
         </div>
         <div class='card-footer' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
             <span class="straight">last update&nbsp; {{this.memo.datetime}}</span>
-            <click-confirm button-size="sm" :messages="{title:'delete?', yes:'yes', no:'no'}" yes-class="btn btn-danger btn-circle" no-class="btn btn-warning btn-circle" style='display:inline-block;float:right;' no-icon='' yes-icon=''>
-                <span class="fas fa-trash-alt" v-b-tooltip.hover.left title="delete" @click="delOn" style='margin-left: 10%'/>
+            <click-confirm button-size="sm" :messages="{title:'delete?', yes:'yes', no:'no'}" yes-class="btn btn-danger btn-circle" no-class="btn btn-warning btn-circle" style='display:inline-block;margin-right: 10%;' no-icon='' yes-icon=''>
+                <span class="fas fa-trash-alt" v-b-tooltip.hover.bottom title="delete" @click="delOn" style='margin-right: 5%'/>
             </click-confirm>
         </div>       
     </div>    
@@ -42,7 +42,7 @@ function color_background(cardIndex){
  * exports
  */
 export default {
-    name:'card',
+    name:'cardtest',
     props:{
         memo: Object,
         cardIndex: Number,
@@ -114,6 +114,12 @@ export default {
          */
         delOn: function(){
             this.$emit('delete_event_parent', this.cardIndex);
+        },
+        /**
+         * blur
+         */
+        testblur: function(){
+            alert('blur')
         }
     },
     beforeMount(){
@@ -136,48 +142,5 @@ export default {
 </script>
 
 <style>
-
-.card-body{
-    padding:0px;
-}
-.card-text{
-    border:0px;
-    font-size: 0.82rem;
-}
-.card-footer{
-    font-size: 0.8rem;    
-    padding:0px;
-}
-/*.delete_button{*/
-
-.fa-trash-alt{
-/*    float: right;
-    margin-top: 4px;
-    margin-right: 17px;*/
-    float: right;
-    margin-top: 45%;
-    margin-right: 70%;
-}
-
-.tooltip-inner{
-  background-color: rgba(66,134,244,1.0) !important;
-  /*color:rgba(66,134,244,1.0) !important;*/
-  /*background-color: rgba(0,0,0,1.0) !important;*/
-  /*color: #bc8f8f;*/
-}
-/*
-.tooltip{
-  background-color: rgba(66,134,244,0.3) !important;
-  color: #bc8f8f;
-}
-*/
-click-confirm{
-    display: inline;
-}
-.animated {
-	-webkit-transition: height 0.2s;
-	-moz-transition: height 0.2s;
-	transition: height 0.2s;
-}
 
 </style>

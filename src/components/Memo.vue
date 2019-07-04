@@ -1,16 +1,19 @@
 <!-- memo / bg, outline selected by :color -->
 <template>
   <div id="app" class='f9'>
-    <p>color:{{$route.params.color}}</p>
     <!--
     <h1 style='margin-left:7%;'>v-memo</h1>
     -->
-    <div class='form-group'>
-      <input type='text' class='form-control form-control-sm' id='filter' placeholder='text filter' :value='this.filter' @input="filterWrite($event.target)"/>
+    <div class='row'>
+      <div class='form-group col-8'>
+        <input type='text' class='form-control form-control-sm' id='filter' placeholder='filter input...' :value='this.filter' @input="filterWrite($event.target)"/>
+      </div>
+      <div class='col-4' style='padding-left: 0px;'>
+        <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new</button>
+      </div>
     </div>
-    <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new</button>
-    <transition-group name='list-complete' tag='p'>
-      <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item._id v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+    <transition-group name='list-complete' tag='div'>
+      <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
     </transition-group>
     <button class='btn btn-sm btn-block btn-outline-danger' @click='nextData'>next10</button>
   </div>
@@ -20,6 +23,19 @@
 import io from 'socket.io-client'
 import card from './card.vue'
 import moment from 'moment'
+
+/**
+ * transition control
+ */
+/*
+function transition_off(){
+  return 'transition-off'  // set dummy name
+}
+function transition_on(){
+  return 'list-complete'
+}
+*/
+
 /**
  * memo.text >>> memo.lines[]
  * @param {String} memo 
@@ -57,11 +73,12 @@ export default {
   data: () => ({
     memos: Array,
     socket : io('localhost:3030'),
-    count: 0,
     test_memos:Array,
     filter: '',
     read_size: 20,
-    cardStyle: String
+    cardStyle: String,
+    //transition_name: String
+    viewIndexMaster: 0  // memo-renban
   }),
   methods: {
     textNew(val){
@@ -73,21 +90,21 @@ export default {
       }
       this.memos[cardIndex].text = newText;
       this.memos[cardIndex].datetime = getDatetime();
-		  const shaped = shapeMemo(this.memos[cardIndex]);
-		  if(this.memos[cardIndex]._id === 'new'){
-			  this.socket.emit('ADD_NEW_ONE', shaped);
-		  }else{
+      const shaped = shapeMemo(this.memos[cardIndex]);
+      if(this.memos[cardIndex]._id === 'new'){
+        this.socket.emit('ADD_NEW_ONE', shaped);
+      }else{
         this.socket.emit('UPSERT_ONE', shaped);
-		  }
-	  },
-	  /**
+      }
+    },
+    /**
 	   * on add new button
 	   */
     addBtnOn: function(){
-		  if(this.memos[0]._id === 'new'){
-			  return;
+      if(this.memos[0]._id === 'new'){
+        return;
 			}
-		  const newMemo = [{_id: 'new', text:'xxx', datetime:getDatetime()}];
+      const newMemo = [{_id:'new', text:'', datetime:getDatetime(), viewIndex: this.viewIndexMaster++}];
       this.memos.splice(0,0,newMemo[0]);
     },
     successAlert: function(){
@@ -135,7 +152,7 @@ export default {
         }else{
           jointext = '';
         }
-        buf.push({_id: m._id, datetime: m.datetime, text: jointext});
+        buf.push({_id: m._id, datetime: m.datetime, text: jointext, viewIndex: this.viewIndexMaster++});
       });
       this.memos = buf;
 		}),
@@ -144,8 +161,10 @@ export default {
 		 */
 		this.socket.on('NEW_ID', (mes) => {
 			if(this.memos[0]._id === 'new'){
+        this.transition_name = 'transition-off'
 				this.memos[0]._id = mes;
-			}
+        //this.transition_name = 'list-complete'
+      }
 		})
   },
   beforeMount(){
@@ -162,15 +181,18 @@ export default {
 }
 </script>
 <style>
-/*
-h1{display: inline;}
-*/
+.form-group{
+  margin-bottom: 0px;
+  display: inline-block;
+  padding-right: 0px;
+}
 /**
- * animation
+ * transition
  */
 .list-complete-item {
   transition: all 1s;
   display: block;
+  margin-bottom: 1px;
 }
 .list-complete-enter, .list-complete-leave-to{
   opacity: 0;

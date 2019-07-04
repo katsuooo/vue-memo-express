@@ -1,3 +1,9 @@
+190704
+inline align-left
+
+
+
+
 190703
 bootstrap importの順番で、優先度がかわる。
 

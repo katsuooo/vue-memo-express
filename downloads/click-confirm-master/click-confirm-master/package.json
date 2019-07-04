@@ -1,0 +1,91 @@
+{
+  "name": "click-confirm",
+  "description": "Prompt user to confirm button click event before allowing the event to proceed.",
+  "author": {
+    "name": "Greg Peden",
+    "email": "greg.j.peden@gmail.com",
+    "url": "https://github.com/SirLamer"
+  },
+  "version": "2.2.0",
+  "main": "dist/click-confirm.common.js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SirLamer/click-confirm/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirLamer/click-confirm.git"
+  },
+  "scripts": {
+    "test": "echo 'no tests!' && npm run lint",
+    "prepublish": "npm run build",
+    "lint": "xo",
+    "build": "bili",
+    "build:example": "poi build",
+    "dev": "poi",
+    "deploy": "npm run build:example && gh-pages -d example/dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "Bootstrap",
+    "Bootstrap4",
+    "Web",
+    "Components",
+    "Vue",
+    "VueJS",
+    "Vue2",
+    "Popover",
+    "CSS"
+  ],
+  "peerDependencies": {
+    "bootstrap-vue": ">= 1.2.0 <= 2",
+    "vue": ">= 2.5.0 < 3"
+  },
+  "devDependencies": {
+    "bili": "^0.18.2",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "eslint-config-rem": "^3.0.0",
+    "gh-pages": "^1.0.0",
+    "poi": "^9.5.0",
+    "rollup-plugin-vue": "^2.5.2",
+    "vue": "^2.5.3",
+    "vue-template-compiler": "^2.5.3",
+    "xo": "^0.18.0"
+  },
+  "unpkg": "dist/click-confirm",
+  "poi": {
+    "entry": "dev/main.js",
+    "dist": "docs",
+    "homepage": "/click-confirm/",
+    "html": {
+      "template": "dev/docs/index.html"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "xo": {
+    "extends": "rem/prettier",
+    "ignores": [
+      "dev/**"
+    ]
+  },
+  "bili": {
+    "format": [
+      "cjs",
+      "umd",
+      "es"
+    ],
+    "plugins": [
+      "vue"
+    ],
+    "external": [
+      "bootstrap-vue",
+      "vue"
+    ],
+    "exports": "named",
+    "compress": true
+  }
+}

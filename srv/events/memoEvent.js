@@ -2,6 +2,7 @@
 */
 const mongoAsync = require('../mongoif/mongoAsync.js');
 const MONGOINFO = require('../config/config.js').MONGOINFO;
+const filterAnalisys = require('./filterAnalisys.js')
 console.log(MONGOINFO)
 
 /**
@@ -65,6 +66,9 @@ function memoEvent(socket){
         const col = MONGOINFO.db1.collection.memo;
         if(param.filter === ''){
             readLimit(param.num, socket)
+        }else if(filterAnalisys.checkDate(param.filter)){
+            console.log('date string')
+            mongoAsync.filterFromDate(db, col, param, socket)
         }else{
             mongoAsync.filteredRead(db, col, param, socket);
         }

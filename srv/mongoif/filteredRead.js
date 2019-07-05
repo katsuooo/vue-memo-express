@@ -27,7 +27,7 @@ var readLimitAnd = async(dbName, colName, filter, num, socket) => {
         console.log(err);
     }finally{
         client.close();
-        console.log(d);
+        //console.log(d);
     }
 }
 /*
@@ -102,9 +102,14 @@ function genFilterOr(filter){
 function genFilterAnd(filter){
     var str = filter.replace(/\s\s+/g, ' ')     //space reduce to 1
     var words = str.split(' ')
-    var andHai = []
+    var checkedWords = []
     words.forEach( (word) => {
-        if(word === '') return;
+        if (word !== ''){
+            checkedWords.push(word)
+        }
+    })
+    var andHai = []
+    checkedWords.forEach( (word) => {
         filterJson = {lines: {$regex: ".*"+word+".*", $options: 'i'}}
         andHai.push(filterJson)
     });
@@ -120,8 +125,8 @@ function genFilterAnd(filter){
 function filteredRead(dbName, colName, param, socket){
     //console.log(param);
     const filter = genFilterAnd(param.filter);
-    console.log(filter.$and[0], filter.$and[1])
-    //console.log(filter)
+    //console.log(filter.$and[0], filter.$and[1])
+    console.log(filter)
     readLimitAnd(dbName, colName, filter, param.num, socket)
 }
 

@@ -4,6 +4,7 @@
 var mongodb = require('mongodb');
 const MONGOINFO = require('../config/config').MONGOINFO;
 const filteredRead = require('./filteredRead');
+const filterFromDate = require('./filterFromDate')
 /**
  * read frome mongo/
  * @param {string} colName 
@@ -25,7 +26,6 @@ var readLimit = async(dbName, colName, num, socket) => {
         client.close();
     }
 }
-
 /**
  * 
  * @param {String} db 
@@ -129,6 +129,12 @@ var mongoAsync = {
      */
     filteredRead:(dbName, colName, param, socket) => {
         filteredRead(dbName, colName, param, socket);
+    },
+    /**
+     * read by date filter
+     */
+    filterFromDate:(dbName, colName, param, socket) => {
+        filterFromDate(dbName, colName, param, socket);
     }
 }
 

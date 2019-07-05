@@ -1,0 +1,5 @@
+taka@taka-Latitude-E6420:~/node/vue-memo-express$ 
+forever start --minUptime 5000 --spinSleepTime 2000 -c "yarn express:run --port 3030" srv/
+だけでいける
+ 
+ 

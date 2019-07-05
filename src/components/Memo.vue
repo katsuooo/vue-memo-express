@@ -36,6 +36,7 @@ function transition_on(){
 }
 */
 
+
 /**
  * memo.text >>> memo.lines[]
  * @param {String} memo 

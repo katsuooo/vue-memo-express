@@ -1,8 +1,8 @@
 190705
 singleクリックでspreadがトグルする。closeをダブルクリックにする。
 socketアドレス。サーバー時はlocalhostでいけるのか、別途確認する。
-今はdeploy時にadressを192.168.10.132に書き換え。
-bg >>> 透明度あげる
+今はdeploy時にadressを192.168.10.132に書き換え。 >>> localhostで大丈夫じゃん。ok
+bgが濃すぎ。透明度あげる
 filter datetime
 datetime時はdatetimeでサーチする。
 8桁数字の場合

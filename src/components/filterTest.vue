@@ -20,6 +20,9 @@ import io from 'socket.io-client'
 import cardtest from './cardtest.vue'
 import moment from 'moment'
 
+
+
+
 /**
  * memo.text >>> memo.lines[]
  * @param {String} memo 

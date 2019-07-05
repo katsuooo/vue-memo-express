@@ -1,7 +1,7 @@
 <template>
     <div class='card' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
         <div class='card-body'>
-            <textarea style="overflow: hidden; line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text' @click="textAreaAdjust($event.target)"></textarea>
+            <textarea style="overflow: hidden; line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text'  @click="textAreaAdjust($event.target)" @dblclick="textAreaClose($event.target)"></textarea>
         </div>
         <div class='card-footer' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
             <span class="straight">last update&nbsp; {{this.memo.datetime}}</span>
@@ -13,6 +13,15 @@
 </template>
 
 <script>
+/**
+ * double click checker
+ */
+var timer = 0;
+var delay = 200;
+var prevent = false;
+/**
+ * colors
+ */
 const colors = ['primary','success','info','warning','danger','secondary','dark','light'];
 /**
  * mono style
@@ -88,13 +97,31 @@ export default {
          * toggle
          */
         textAreaAdjust: function(o){
+            timer = setTimeout(function() {
+                if (!prevent) {
+                    o.style.height = "1px";
+                    o.style.height = (o.scrollHeight) + "px";
+                }
+                prevent = false;
+            }, delay);
+            /*
             if(o.style.height !== this.initialTextareaHeight){
                 o.style.height = this.initialTextareaHeight
                 return
             }
+            */
             o.style.height = "1px";
             //o.style.height = (25+o.scrollHeight)+"px";
             o.style.height = (o.scrollHeight) + "px";
+        },
+        /**
+         * textarea close
+         */
+        textAreaClose: function(o){
+            clearTimeout(timer);
+            prevent = true;
+
+            o.style.height = this.initialTextareaHeight
         },
         count: function(){
             //this.countTest += 1;

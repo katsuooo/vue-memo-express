@@ -1,7 +1,7 @@
 <template>
     <div class='card' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
         <div class='card-body'>
-            <textarea style="overflow: hidden; line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text' @click="textAreaAdjust($event.target)"></textarea>
+            <textarea style="overflow: hidden; line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text' @click="sclick($event.target)" @dblclick="dclick($event.target)"></textarea>
         </div>
         <div class='card-footer' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
             <span class="straight">last update&nbsp; {{this.memo.datetime}}</span>
@@ -37,6 +37,29 @@ function color_background(cardIndex){
     }else{
         return 'bg-' + colors[index] + ' text-white';
     }
+}
+/**
+ * double click checker
+ */
+var timer = 0;
+var delay = 200;
+var prevent = false;
+
+/**
+ * textarea double click action
+ */
+function textAreaSpread(o){
+    /*
+    if(o.style.height !== height){
+        o.style.height = height
+        return
+    }
+    */
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight) + "px";
+}
+function textAreaHeightReset(o, height){
+    o.style.height = height
 }
 /**
  * exports
@@ -85,21 +108,23 @@ export default {
             */
         },
         /**
-         * toggle
+         * textarea clicks
          */
-        textAreaAdjust: function(o){
-            if(o.style.height !== this.initialTextareaHeight){
-                o.style.height = this.initialTextareaHeight
-                return
-            }
-            o.style.height = "1px";
-            //o.style.height = (25+o.scrollHeight)+"px";
-            o.style.height = (o.scrollHeight) + "px";
+        sclick: function(o){
+            timer = setTimeout(function() {
+                if (!prevent) {
+                    textAreaSpread(o)
+                }
+                prevent = false;
+            }, delay);
         },
-        count: function(){
-            //this.countTest += 1;
-            //alert(memoChild.text);
-            //this.test += 1;
+        /**
+         * textarea double click
+         */
+        dclick: function(o){
+            clearTimeout(timer);
+            prevent = true;
+            textAreaHeightReset(o, this.initialTextareaHeight)
         },
         /**
          * text edit event

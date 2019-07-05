@@ -1,3 +1,75 @@
+190705-2
+timer方式　少しスプレッドにラグがある。
+delayちぢめると、prevent = falseのresetがきかず、close後の初回clickが動作しない。
+
+singleクリック時にdouble clickされるかどうかtimer時間まつ。
+dblclickされると、single click動作しない。
+dblclickされずtimerがtimeoutするとsingle clickが動作する。
+
+
+
+Memo.vue/script
+/**
+ * double click checker
+ */
+var timer = 0;
+var delay = 200;
+var prevent = false;
+
+/**
+ * textarea double click action
+ */
+function textAreaSpread(o){
+    /*
+    if(o.style.height !== height){
+        o.style.height = height
+        return
+    }
+    */
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight) + "px";
+}
+function textAreaHeightReset(o, height){
+    o.style.height = height
+}
+
+Memo.vue/method
+        /**
+         * textarea clicks
+         */
+        sclick: function(o){
+            timer = setTimeout(function() {
+                if (!prevent) {
+                    textAreaSpread(o)
+                }
+                prevent = false;
+            }, delay);
+        },
+        /**
+         * textarea double click
+         */
+        dclick: function(o){
+            clearTimeout(timer);
+            prevent = true;
+            textAreaHeightReset(o, this.initialTextareaHeight)
+        },
+
+
+
+
+
+
+190705
+カーソル位置をかえるのにclickすると拡大される。
+single クリックで拡大
+double clickでちぢむ
+にかえる。
+@dblclickは動作するが、必ず先に@clickが動作する。
+
+
+
+
+
 190703
 textareaの縦伸縮
 開くだけなのでとじるようにする。

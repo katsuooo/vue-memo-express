@@ -1,9 +1,21 @@
+190705
+singleクリックでspreadがトグルする。closeをダブルクリックにする。
+socketアドレス。サーバー時はlocalhostでいけるのか、別途確認する。
+今はdeploy時にadressを192.168.10.132に書き換え。
+bg >>> 透明度あげる
+filter datetime
+datetime時はdatetimeでサーチする。
+8桁数字の場合
+
+
+
 190704
 newメモにテキストを入力時、アニメでデータがいれかわる。
 初文字でmongoにアクセスして、idが返ってくる。で_idが書き換わる。
 このときにtransrationのアニメが効いてしまう。
 フォーカスもはずれる。めんどいよ。
 _id書き換えでtransiditon発火。
+>>> key:item._id の設定により、_id書き換えでre-rendaring発火。key用にindexを別途作成。
 
 
 190703-2

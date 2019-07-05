@@ -56,7 +56,8 @@ export default {
     },
     data: () => ({
         memos: Array,
-        socket : io('localhost:3030'),
+        //socket : io('localhost:3030'),
+        socket : io('192.168.10.132:3030'),
         test_memos:Array,
         filter: '',
         read_size: 4,

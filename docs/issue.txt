@@ -1,3 +1,14 @@
+190707
+daily
+top calender - day select
+center select
+left,right >>> swipe next 
+
+del key no reaction >>> trashにfloat:rightかくとクリックできなくなる。親でfloat:right
+は書かれていて、２重になるとクリックできない。trashのfloat:rightをとる
+
+
+
 190705
 singleクリックでspreadがトグルする。closeをダブルクリックにする。
 socketアドレス。サーバー時はlocalhostでいけるのか、別途確認する。

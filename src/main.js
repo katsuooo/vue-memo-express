@@ -26,6 +26,7 @@ Vue.component('clickConfirm', ClickConfirm);
 
 import App from './App.vue'
 
+
 new Vue({
   router,
   render: h => h(App),

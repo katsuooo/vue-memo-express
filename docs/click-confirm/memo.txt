@@ -1,0 +1,16 @@
+190707
+背景をかえるのにプロパティを調べる。
+ソース見たほうがやはい。
+v-b-popoverをつかっているので、click-confirm内にtitleの背景設定できるプロパティがない。
+ソースを改変してつけたほうがいいかもしらん。
+
+/*.bs-popover-top{*/     >>> y,n button背景、title部除く
+/*#__BV_popover_2__{*/   >>> 同上
+/*
+.text-center{            >>> 上より少し狭いエリア。クラス名はbs4のもの？
+    background-color: red;
+}
+*/
+
+bootstrap-vue popover
+https://bootstrap-vue.js.org/docs/components/popover/

@@ -3,10 +3,10 @@
         <div class='card-body'>
             <textarea style="overflow: hidden; line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text' @click="sclick($event.target)" @dblclick="dclick($event.target)"></textarea>
         </div>
-        <div class='card-footer' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
+        <div class='card-footer text-muted' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
             <span class="straight">last update&nbsp; {{this.memo.datetime}}</span>
-            <click-confirm button-size="sm" :messages="{title:'delete?', yes:'yes', no:'no'}" yes-class="btn btn-danger btn-circle" no-class="btn btn-warning btn-circle" style='display:inline-block;float:right;' no-icon='' yes-icon=''>
-                <span class="fas fa-trash-alt" v-b-tooltip.hover.left title="delete" @click="delOn" style='margin-left: 10%'/>
+            <click-confirm class='trash_confirm' button-size="sm" :messages="{title:'delete ?', yes:'yes', no:'no'}" yes-class="btn btn-danger btn-circle" no-class="btn btn-warning btn-circle" style='display:inline-block;float:right;' no-icon='' yes-icon=''>
+                <span class="fas fa-trash-alt card_trash" v-b-tooltip.hover.left title="delete" @click="delOnx"/>
             </click-confirm>
         </div>       
     </div>    
@@ -132,12 +132,13 @@ export default {
         rewrite: function(target){
             this.$emit('input', target.value);     // textarea parent data re-write
             this.$emit('editing_event_parent', this.cardIndex, target.value);
-            this.textAreaAdjust(target);
+            //this.textAreaAdjust(target);
+            textAreaSpread(target)
         },
         /**
          * delete on
          */
-        delOn: function(){
+        delOnx: function(){
             this.$emit('delete_event_parent', this.cardIndex);
         }
     },
@@ -146,11 +147,13 @@ export default {
         this.test = 0;
     },
     watch:{
+        /*
         'memo.text': function(n,o){
             n;
             o;
             //alert(n);
         }
+        */
         /*
         'cardStyle': function(){
             alert(this.cardStyle)
@@ -174,15 +177,22 @@ export default {
     padding:0px;
 }
 /*.delete_button{*/
-
-.fa-trash-alt{
-/*    float: right;
-    margin-top: 4px;
-    margin-right: 17px;*/
-    float: right;
-    margin-top: 45%;
-    margin-right: 70%;
+.trash_confirm{
+    /*background-color: red;*/
+    margin-right: 2%;
 }
+.card_trash{
+    /*float: right;*/
+    margin-top: 45%;
+    /*margin-right: 70%;*/
+}
+/*.bs-popover-top{*/
+/*#__BV_popover_2__{*/
+/*
+.text-center{
+    background-color: red;
+}
+*/
 
 .tooltip-inner{
   background-color: rgba(66,134,244,1.0) !important;

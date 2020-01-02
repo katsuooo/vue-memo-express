@@ -21,8 +21,11 @@ const router = new VueRouter({routes})
 /*
  click-confirm
 */
-import ClickConfirm from 'click-confirm/src/components/ClickConfirm.vue'
-Vue.component('clickConfirm', ClickConfirm);
+//import ClickConfirm from 'click-confirm/src/components/ClickConfirm.vue'
+//Vue.component('clickConfirm', ClickConfirm);
+/**
+ * exchenge vb-popup delete icon
+ */
 
 import App from './App.vue'
 

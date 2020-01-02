@@ -14,6 +14,7 @@
 import io from 'socket.io-client'
 import card from './card.vue'
 import moment from 'moment'
+import mongoUrl from './mongoUrl'
 /**
  * memo.text >>> memo.lines[]
  * @param {String} memo 
@@ -50,7 +51,8 @@ export default {
   },
   data: () => ({
     memos: Array,
-    socket : io('localhost:3030'),
+    //socket : io('localhost:3030'),
+    socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
     count: 0,
     test_memos:Array
   }),

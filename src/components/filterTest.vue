@@ -50,6 +50,15 @@ function getDatetime(){
     return moment().format().split('+')[0];
 }
 /**
+ * get url (gen mongodb url)
+ */
+function getUrl(){
+    //return io.request.connection.remoteAddress
+    var web_server = window.location.host
+    var backend = web_server.split(':')[0] + ':3030'
+    return backend
+}
+/**
  * 
  */
 export default {
@@ -60,7 +69,8 @@ export default {
     data: () => ({
         memos: Array,
         //socket : io('localhost:3030'),
-        socket : io('192.168.10.132:3030'),
+        //socket : io('192.168.10.132:3030'),
+        socket: io(getUrl(), {transports: ['websocket']}),
         test_memos:Array,
         filter: '',
         read_size: 4,

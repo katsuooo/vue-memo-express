@@ -23,6 +23,7 @@
 import io from 'socket.io-client'
 import card from './card.vue'
 import moment from 'moment'
+import mongoUrl from './mongoUrl'
 
 /**
  * transition control
@@ -35,7 +36,6 @@ function transition_on(){
   return 'list-complete'
 }
 */
-
 
 /**
  * memo.text >>> memo.lines[]
@@ -74,7 +74,8 @@ export default {
   data: () => ({
     memos: Array,
     //socket : io('localhost:3030'),
-    socket : io('192.168.10.132:3030'), 
+    //socket : io('192.168.10.132:3030'), 
+    socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
     test_memos:Array,
     filter: '',
     read_size: 20,
@@ -103,9 +104,11 @@ export default {
 	   * on add new button
 	   */
     addBtnOn: function(){
-      if(this.memos[0]._id === 'new'){
-        return;
-			}
+      if(this.memos[0] !== undefined){
+        if(this.memos[0]._id === 'new'){
+          return;
+        }
+      }
       const newMemo = [{_id:'new', text:'', datetime:getDatetime(), viewIndex: this.viewIndexMaster++}];
       this.memos.splice(0,0,newMemo[0]);
     },

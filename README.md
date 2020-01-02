@@ -1,29 +1,14 @@
 # vue-memo-express
 
-## Project setup
-```
-yarn install
-```
+## vue memo by mongodb
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+app url     
+dev  (yarn serve) localhost: 8080
+build(yarn express:run --port 3030) localhost:3030 
+sever url   localhost:3030
+mongodb url localhost:27017
 
-### Compiles and minifies for production
-```
-yarn run build
-```
 
-### Run your tests
-```
-yarn run test
-```
 
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<br>
+This software is released under the MIT License, see LICENSE.txt.

@@ -19,7 +19,9 @@
     "serialize-javascript": "^2.1.2",
     "socket.io": "^2.2.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6"
+    "vue-router": "^3.0.6",
+    "minimist":"^1.2.3",
+    "acorn":"^6.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

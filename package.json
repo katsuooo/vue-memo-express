@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "express": "vue-cli-service express:watch",
-    "express:run": "vue-cli-service express:run"
+    "express": "vue-cli-service express:watch --port 3010",
+    "express:run": "vue-cli-service express:run --port 3010"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",

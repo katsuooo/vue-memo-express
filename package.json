@@ -10,18 +10,19 @@
     "express:run": "vue-cli-service express:run --port 3010"
   },
   "dependencies": {
+    "acorn": "^6.0.3",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.25",
     "core-js": "^2.6.5",
     "js-yaml": "^3.13.1",
+    "minimist": "^1.2.3",
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
+    "node-forge": "^0.10.0",
     "serialize-javascript": "^3.1.0",
     "socket.io": "^2.2.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6",
-    "minimist":"^1.2.3",
-    "acorn":"^6.0.3"
+    "vue-router": "^3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",

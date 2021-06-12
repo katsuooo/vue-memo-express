@@ -1,0 +1,23 @@
+210612
+
+
+port変更 3010の
+
+package.json変更
+
+mongourl.vue
+filterTest.vue
+のポート3010に変更。
+
+socket.ioのバージョンアップ
+socket.io remove
+socket.io, socket.io-clientのインストール
+
+memo追加時、index.js.64にエラーがでるが、原因不明。
+nodeName of null >>> nodeNameは変数名ではなく、内部変数？
+
+動作はしている。
+
+
+
+

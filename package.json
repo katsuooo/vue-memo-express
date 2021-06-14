@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "acorn": "^6.0.3",
-    "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.25",
+    "bootstrap": "^5.0.1",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^2.6.5",
     "js-yaml": "^3.13.1",
     "minimist": "^1.2.3",

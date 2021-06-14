@@ -1,7 +1,7 @@
 <!-- memo bg -->
 <template>
-    <div id="app" class='f9'>
-
+    <div id="app" class='f9' style='display:flex;'>
+        <h1>test</h1>
         <div class='form-group'>
             <!--<label for='filter'></label>-->
             <input type='text' class='form-control form-control-sm' id='filter' placeholder='text input...' :value='this.filter' @input="filterWrite($event.target)"/>

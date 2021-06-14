@@ -1,0 +1,29 @@
+210614
+
+panelを再実装
+以前の実装はcommitしわすれでどこかに消えた。
+
+カードを並べて、固定メモを設置するだけ。
+bootstrap versionを上げてみる。
+
+package.json
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.25",
+
+remove, addをする
+
+bootstrap >>> 5.0.1
+bootstrap-vue >>> 2.21.2
+
+add new buttonの幅がちじんだ。
+next 10も
+
+filterTestはつかっていない。
+Memo.vueが表示されている。
+<div class='d-grid'
+でかこむ形で横幅いっぱいになる。
+
+
+
+
+

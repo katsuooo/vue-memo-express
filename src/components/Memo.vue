@@ -8,14 +8,16 @@
       <div class='form-group col-8'>
         <input type='text' class='form-control form-control-sm' id='filter' placeholder='filter input...' :value='this.filter' @input="filterWrite($event.target)"/>
       </div>
-      <div class='col-4' style='padding-left: 0px;'>
-        <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new</button>
+      <div class='col-4 d-grid' style='padding-left: 0px;'>
+        <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new xxx</button>
       </div>
     </div>
     <transition-group name='list-complete' tag='div'>
       <card class='list-complete-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
     </transition-group>
+    <div class='d-grid'>
     <button class='btn btn-sm btn-block btn-outline-danger' @click='nextData'>next10</button>
+    </div>
   </div>
 </template>
 

@@ -4,9 +4,16 @@
         <h4>panel</h4>
         <span>{{memos}}</span>
         <span>{{this.memos}}</span>
+        <!--
         <transition-group name='list-complete' tag='div'>
             <panelCard class='list-complete-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
         </transition-group>
+        -->
+        <div class="row row-cols-1 row-cols-md-4 g-3">
+            <transition-group name='list-complete' tag='div' class='col'>
+                <panelCard class='panel-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+            </transition-group>
+        </div>
 <!--
 <div class="row row-cols-1 row-cols-md-4 g-3">
     <div class="col">
@@ -141,3 +148,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+.panel-item {
+  transition: all 1s;
+  /*display: inline-block;*/
+  /*display: block;*/
+  /*margin-right: 10px;*/
+}
+</style>

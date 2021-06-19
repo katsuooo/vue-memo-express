@@ -1,4 +1,5 @@
 <template>
+<!--
     <div class='card' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
         <h1>a</h1>
         <div class='card-body'>
@@ -8,6 +9,19 @@
             <span class="straight">last update&nbsp; {{this.memo.datetime}}&nbsp;&nbsp;</span>
             <delIcon :key=this.cardIndex v-bind:cardId='this.genCardId(this.cardIndex)' v-on:delete_event_child='delOnx' />
         </div>       
+    </div>    
+-->
+    <div class='card h-300' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
+        <h1>a</h1>
+        <div class='card-body'>
+            <textarea style="line-height: 25px; height: 100px;" class="card-text form-control animated" :class="this.cardbody_color(this.cardStyle, this.cardIndex)" placeholder="new memo write ..."  @input="rewrite($event.target)" :value='this.memo.text' @click="sclick($event.target)" @dblclick="dclick($event.target)"></textarea>
+        </div>
+        
+        <div class='card-footer text-muted' :class="this.cardbody_color(this.cardStyle, this.cardIndex)">
+            <span class="straight">last update&nbsp; {{this.memo.datetime}}&nbsp;&nbsp;</span>
+            <delIcon :key=this.cardIndex v-bind:cardId='this.genCardId(this.cardIndex)' v-on:delete_event_child='delOnx' />
+        </div>
+             
     </div>    
 </template>
 

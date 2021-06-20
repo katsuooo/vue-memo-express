@@ -10,8 +10,8 @@
         </transition-group>
         -->
         <div class="row row-cols-1 row-cols-md-4 g-3">
-            <transition-group name='list-complete' tag='div' class='col'>
-                <panelCard class='panel-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+            <transition-group name='panel-complete' tag='div' class='col'>
+                <panelCard class='panel-complete-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
             </transition-group>
         </div>
 <!--
@@ -149,10 +149,20 @@ export default {
 }
 </script>
 <style scoped>
-.panel-item {
+.panel-complete-item {
   transition: all 1s;
   /*display: inline-block;*/
-  /*display: block;*/
+  display: block;
   /*margin-right: 10px;*/
+}
+/**
+ * transition
+ */
+.panel-complete-enter, .panel-complete-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.panel-complete-leave-active {
+  position: absolute;
 }
 </style>

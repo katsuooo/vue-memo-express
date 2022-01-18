@@ -1,0 +1,12 @@
+190701
+dev
+yarn express
+--port でポート指定可、default 3000
+
+dev
+yarn express:run
+vue buildが同時にservされる
+
+
+file path
+./srvからかく

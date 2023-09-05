@@ -25,6 +25,7 @@
 import io from 'socket.io-client'
 import card from './card.vue'
 import moment from 'moment'
+/* eslint-disable-next-line */
 import mongoUrl from './mongoUrl'
 
 /**
@@ -75,9 +76,8 @@ export default {
   },
   data: () => ({
     memos: Array,
-    //socket : io('localhost:3030'),
-    //socket : io('192.168.10.132:3030'), 
-    socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
+    //socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
+    socket: io('18.178.12.57:5150', {transports: ['websocket']}),
     test_memos:Array,
     filter: '',
     read_size: 20,

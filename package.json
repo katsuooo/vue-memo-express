@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 5100",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "express": "vue-cli-service express:watch --port 3010",
-    "express:run": "vue-cli-service express:run --port 3010"
+    "express": "vue-cli-service express:watch --port 5100",
+    "express:run": "vue-cli-service express:run --port 5100"
   },
   "dependencies": {
     "bootstrap-vue": "^2.21.2",

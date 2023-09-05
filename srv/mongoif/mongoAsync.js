@@ -13,12 +13,15 @@ const filterFromDate = require('./filterFromDate')
  */
 var readLimit = async(dbName, colName, num, socket) => {
     let client;
+    let rdata;
     try{
         client = await mongodb.MongoClient.connect(MONGOINFO.url, {useNewUrlParser:true});
         const db = await client.db(dbName);
+        console.log(db)
         const collection = await db.collection(colName);
         let d = await collection.find({}).sort({datetime:-1}).limit(num).toArray();
         socket.emit('READLIMIT_RESULT', d);
+        console.log('finally-d',d)
         //console.log(dbName, colName, d);
     }catch(err){
         console.log(err);

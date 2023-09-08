@@ -11,7 +11,13 @@
         -->
         <div class="row row-cols-1 row-cols-md-4 g-3">
             <transition-group name='panel-complete' tag='div' class='col'>
-                <panelCard class='panel-complete-item' v-for='(item, index) in this.memos' :key=item.viewIndex v-bind:cardIndex='index' v-bind:memo='item' v-bind:cardStyle='cardStyle' v-on:editing_event_parent='editOnParent' v-on:delete_event_parent='deleteOn'/>
+                <panelCard class='panel-complete-item' v-for='(item, index) in this.memos' 
+                    :key=item.viewIndex 
+                    v-bind:cardIndex='index' 
+                    v-bind:memo='item' 
+                    v-bind:cardStyle='cardStyle' 
+                    v-on:editing_event_parent='editOnParent' 
+                    v-on:delete_event_parent='deleteOn'/>
             </transition-group>
         </div>
 <!--
@@ -137,6 +143,7 @@ export default {
         //eslint-disable-next-line
         deleteOn(cardIndex){
             // event: delet one
+            console.log('panel/delete-on', cardIndex)
         },
         /*
         cardStyle(){

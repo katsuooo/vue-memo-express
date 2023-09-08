@@ -1,0 +1,10 @@
+
+//web-server
+./vue-memo-express から
+pm2 start "~/vue-memo-express/node_modules/@vue/cli-service/bin/vue-cli-service.js serve --port 5100"
+
+絶対パスなので場所は関係ない
+
+
+//mongodb server
+pm2 start "~/vue-memo-express/node_modules/@vue/cli-service/bin/vue-cli-service.js express:watch --port 5150"

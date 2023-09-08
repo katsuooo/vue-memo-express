@@ -6,6 +6,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
+/*
+package.json
+    "bootstrap-vue": "^2.21.2",
+*/
+
 
 
 Vue.config.productionTip = false
@@ -27,6 +32,7 @@ const router = new VueRouter({routes})
  * exchenge vb-popup delete icon
  */
 
+
 import App from './App.vue'
 
 
@@ -34,4 +40,7 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+
+
+
 

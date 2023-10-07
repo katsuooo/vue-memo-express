@@ -9,7 +9,7 @@
         <input type='text' class='form-control form-control-sm' id='filter' placeholder='filter input...' :value='this.filter' @input="filterWrite($event.target)"/>
       </div>
       <div class='col-4 d-grid' style='padding-left: 0px;'>
-        <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new xxx</button>
+        <button class='btn btn-sm btn-block btn-outline-secondary' @click='addBtnOn'>add new memo</button>
       </div>
     </div>
     <transition-group name='list-complete' tag='div'>

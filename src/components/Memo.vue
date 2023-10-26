@@ -76,8 +76,8 @@ export default {
   },
   data: () => ({
     memos: Array,
-    //socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
-    socket: io('18.178.12.57:5150', {transports: ['websocket']}),
+    socket: io(mongoUrl.getUrl(), {transports: ['websocket']}),
+    //socket: io('18.178.12.57:5150', {transports: ['websocket']}),
     test_memos:Array,
     filter: '',
     read_size: 20,
